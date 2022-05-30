@@ -6,29 +6,31 @@ using System.Threading.Tasks;
 
 namespace Day16_17Problems
 {
-    internal class Anagrams
+    internal class PrimeRange1_1000
     {
-        public bool areAnagram(string firstString, string secondString)
+        public void PrimeRange()
         {
-            if (firstString.Length != secondString.Length)
+
+            bool isPrime = true;
+            int i, j;
+
+            Console.WriteLine("Prime Numbers are : ");
+            for (i = 2; i <= 1000; i++)
             {
-                return false;
-            }
-            //Convert string to character array  
-            char[] firstCharsArray = firstString.ToLower().ToCharArray();
-            char[] secondCharsArray = secondString.ToLower().ToCharArray();
-            //Sort array  
-            Array.Sort(firstCharsArray);
-            Array.Sort(secondCharsArray);
-            //Check each character and position.  
-            for (int i = 0; i < firstCharsArray.Length; i++)
-            {
-                if (firstCharsArray[i].ToString() != secondCharsArray[i].ToString())
+                for (j = 2; j <= 1000; j++)
                 {
-                    return false;
+                    if (i != j && i % j == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
                 }
+                if (isPrime)
+                {
+                    Console.Write("\t" + i);
+                }
+                isPrime = true;
             }
-            return true;
         }
     }
 }
