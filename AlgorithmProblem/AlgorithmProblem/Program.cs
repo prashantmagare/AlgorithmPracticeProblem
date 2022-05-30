@@ -6,39 +6,49 @@ using System.Threading.Tasks;
 
 namespace Day16_17Problems
 {
-    internal class BubbleSorting
+    internal class MergeSortArray
     {
-        public void BubbleSort()
+        public void MergeSorting()
         {
-            int[] intArray = new int[5];
-            Console.WriteLine("Enter 5 Numbers ");
-            intArray[0] = Convert.ToInt32(Console.ReadLine());
-            intArray[1] = Convert.ToInt32(Console.ReadLine());
-            intArray[2] = Convert.ToInt32(Console.ReadLine());
-            intArray[3] = Convert.ToInt32(Console.ReadLine());
-            intArray[4] = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Before Sorting ");
-            for (int a = 0; a < intArray.Length; a++)
+            string[] list = { "C#", "Assignments", "Are", "Complicated", "This", "Time" };
+            string[] firstHalf, secondHalf;
+            Console.WriteLine("Spliting Array into Two halfs\n");
+            firstHalf = list.Take(list.Length / 2).ToArray();
+            secondHalf = list.Skip(list.Length / 2).ToArray();
+            Console.WriteLine("Before Sorting First Half\n");
+            for (int i = 0; i < list.Length / 2; i++)
             {
-                Console.WriteLine(intArray[a]);
+                Console.WriteLine(firstHalf[i] + " ");
             }
-            Console.WriteLine("After Sorintg");
-            int temp;
-            for (int j = 0; j <= intArray.Length - 2; j++)
+            Console.WriteLine("\n Before Sorting Second Half\n");
+            for (int j = 0; j < list.Length / 2; j++)
             {
-                for (int i = 0; i <= intArray.Length - 2; i++)
-                {
-                    if (intArray[i] > intArray[i + 1])
-                    {
-                        temp = intArray[i + 1];
-                        intArray[i + 1] = intArray[i];
-                        intArray[i] = temp;
-                    }
-                }
+
+                Console.WriteLine(secondHalf[j] + " ");
             }
-            Console.WriteLine("Sorted:");
-            foreach (int p in intArray)
-                Console.Write(p + "\n");
+            Console.WriteLine("\nSorting First Half \n");
+            Array.Sort(firstHalf);
+            for (int k = 0; k < list.Length / 2; k++)
+            {
+                Console.WriteLine(firstHalf[k] + " ");
+
+            }
+            Console.WriteLine("\nSorting Second Half \n");
+            Array.Sort(secondHalf);
+            for (int l = 0; l < list.Length / 2; l++)
+            {
+                Console.WriteLine(secondHalf[l] + " ");
+            }
+            Console.WriteLine("\nMerging Both Arrays And Printing : \n");
+            list = firstHalf.Concat(secondHalf).ToArray();
+            for (int m = 0; m < list.Length; m++)
+            {
+                Console.WriteLine(list[m]);
+            }
+
+
+
+
         }
     }
 }
