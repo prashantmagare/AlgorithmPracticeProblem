@@ -6,39 +6,27 @@ using System.Threading.Tasks;
 
 namespace Day16_17Problems
 {
-    internal class StringEqual
+    internal class SortedList
     {
-        public static string s, s2, s3, s4;
-        public static void permute(string str, int l, int r)
-
+        public void Sort()
         {
-            if (l == r)
-                Console.WriteLine(str);
-            else
+            string[] words = new string[5];
+            Console.WriteLine("Enter Words in Array");
+            words[0] = Console.ReadLine();
+            words[1] = Console.ReadLine();
+            words[2] = Console.ReadLine();
+            words[3] = Console.ReadLine();
+            words[4] = Console.ReadLine();
+            Console.WriteLine("Before Sorting\n");
+            for (int i = 0; i < words.Length; i++)
             {
-                for (int i = l; i <= r; i++)
-                {
-                    str = swap(str, l, i);
-                    permute(str, l + 1, r);
-                    str = swap(str, l, i);
-                }
+                Console.WriteLine(words[i] + " ");
             }
+            Console.WriteLine("After Sorting\n");
+            Array.Sort(words, StringComparer.InvariantCulture);
+            Array.ForEach(words, x => Console.WriteLine(x));
+
 
         }
-
-        public static string swap(string a, int i, int j)
-
-        {
-            char temp;
-            char[] charArray = a.ToCharArray();
-            temp = charArray[i];
-            charArray[i] = charArray[j];
-            charArray[j] = temp;
-            s = new string(charArray);
-            return s;
-
-        }
-
-
     }
 }
