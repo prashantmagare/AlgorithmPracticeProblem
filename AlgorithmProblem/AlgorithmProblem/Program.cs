@@ -6,49 +6,29 @@ using System.Threading.Tasks;
 
 namespace Day16_17Problems
 {
-    internal class MergeSortArray
+    internal class Anagrams
     {
-        public void MergeSorting()
+        public bool areAnagram(string firstString, string secondString)
         {
-            string[] list = { "C#", "Assignments", "Are", "Complicated", "This", "Time" };
-            string[] firstHalf, secondHalf;
-            Console.WriteLine("Spliting Array into Two halfs\n");
-            firstHalf = list.Take(list.Length / 2).ToArray();
-            secondHalf = list.Skip(list.Length / 2).ToArray();
-            Console.WriteLine("Before Sorting First Half\n");
-            for (int i = 0; i < list.Length / 2; i++)
+            if (firstString.Length != secondString.Length)
             {
-                Console.WriteLine(firstHalf[i] + " ");
+                return false;
             }
-            Console.WriteLine("\n Before Sorting Second Half\n");
-            for (int j = 0; j < list.Length / 2; j++)
+            //Convert string to character array  
+            char[] firstCharsArray = firstString.ToLower().ToCharArray();
+            char[] secondCharsArray = secondString.ToLower().ToCharArray();
+            //Sort array  
+            Array.Sort(firstCharsArray);
+            Array.Sort(secondCharsArray);
+            //Check each character and position.  
+            for (int i = 0; i < firstCharsArray.Length; i++)
             {
-
-                Console.WriteLine(secondHalf[j] + " ");
+                if (firstCharsArray[i].ToString() != secondCharsArray[i].ToString())
+                {
+                    return false;
+                }
             }
-            Console.WriteLine("\nSorting First Half \n");
-            Array.Sort(firstHalf);
-            for (int k = 0; k < list.Length / 2; k++)
-            {
-                Console.WriteLine(firstHalf[k] + " ");
-
-            }
-            Console.WriteLine("\nSorting Second Half \n");
-            Array.Sort(secondHalf);
-            for (int l = 0; l < list.Length / 2; l++)
-            {
-                Console.WriteLine(secondHalf[l] + " ");
-            }
-            Console.WriteLine("\nMerging Both Arrays And Printing : \n");
-            list = firstHalf.Concat(secondHalf).ToArray();
-            for (int m = 0; m < list.Length; m++)
-            {
-                Console.WriteLine(list[m]);
-            }
-
-
-
-
+            return true;
         }
     }
 }
